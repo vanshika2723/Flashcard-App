@@ -1,0 +1,475 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255, 166, 158, 0.35), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(168, 130, 255, 0.35), transparent 30%),
+        linear-gradient(135deg, #fff7f1, #f4edff);
+
+    color: #29243a;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app-container {
+    width: 100%;
+    max-width: 900px;
+
+    padding: 35px;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    background: rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(75, 55, 100, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    text-align: center;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.app-header {
+    margin-bottom: 25px;
+}
+
+.task-label {
+    display: inline-block;
+
+    padding: 7px 15px;
+    margin-bottom: 12px;
+
+    border-radius: 50px;
+
+    background: #29243a;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.app-header h1 {
+    font-size: 44px;
+    font-weight: 800;
+
+    background: linear-gradient(
+        90deg,
+        #7c3aed,
+        #db2777,
+        #f97316
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 8px;
+}
+
+.app-header p:last-child {
+    color: #6f687b;
+    font-size: 15px;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0 auto 18px;
+}
+
+#progressText {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #625a72;
+}
+
+
+/* =========================
+   FLASHCARD
+========================= */
+
+.flashcard-container {
+    width: 100%;
+    max-width: 650px;
+    height: 370px;
+
+    margin: 0 auto 30px;
+
+    perspective: 1200px;
+
+    cursor: pointer;
+}
+
+.flashcard {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flashcard-container.flipped .flashcard {
+    transform: rotateY(180deg);
+}
+
+
+/* =========================
+   CARD FACES
+========================= */
+
+.card-face {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 45px;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    box-shadow:
+        0 25px 50px rgba(45, 35, 65, 0.18);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+
+/* Decorative glow */
+
+.card-face::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    filter: blur(10px);
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+.card-front::before {
+    top: -70px;
+    right: -50px;
+
+    background: #f59e0b;
+}
+
+.card-back::before {
+    bottom: -80px;
+    left: -50px;
+
+    background: #c084fc;
+}
+
+
+/* Front */
+
+.card-front {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(255, 246, 239, 0.96)
+        );
+}
+
+
+/* Back */
+
+.card-back {
+    background:
+        linear-gradient(
+            135deg,
+            #332b4d,
+            #4a315d
+        );
+
+    color: white;
+
+    transform: rotateY(180deg);
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.card-label {
+    position: relative;
+
+    padding: 7px 14px;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    margin-bottom: 25px;
+}
+
+.card-front .card-label {
+    background: #fff0e7;
+    color: #e66b32;
+}
+
+.card-back .card-label {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f6c8ff;
+}
+
+.card-face h2 {
+    position: relative;
+
+    max-width: 550px;
+
+    font-size: 29px;
+    line-height: 1.45;
+
+    font-weight: 700;
+}
+
+.card-back h2 {
+    color: #ffffff;
+}
+
+
+/* =========================
+   FLIP HINT
+========================= */
+
+.flip-hint {
+    position: absolute;
+    bottom: 25px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    opacity: 0.55;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.navigation button {
+    min-width: 140px;
+
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+#prevBtn {
+    background: #ffffff;
+    color: #493d5c;
+
+    border: 1px solid #e6dff0;
+}
+
+#nextBtn {
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #db2777
+    );
+
+    color: white;
+
+    box-shadow:
+        0 10px 25px rgba(124, 58, 237, 0.25);
+}
+
+.navigation button:hover:not(:disabled) {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 25px rgba(50, 40, 70, 0.16);
+}
+
+#nextBtn:hover:not(:disabled) {
+    box-shadow:
+        0 15px 30px rgba(219, 39, 119, 0.3);
+}
+
+.navigation button:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.navigation button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .app-container {
+        padding: 25px 18px;
+        border-radius: 24px;
+    }
+
+    .app-header h1 {
+        font-size: 34px;
+    }
+
+    .flashcard-container {
+        height: 330px;
+    }
+
+    .card-face {
+        padding: 30px 22px;
+        border-radius: 22px;
+    }
+
+    .card-face h2 {
+        font-size: 22px;
+    }
+
+    .navigation button {
+        min-width: 120px;
+        padding: 12px 16px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .app-header h1 {
+        font-size: 29px;
+    }
+
+    .flashcard-container {
+        height: 300px;
+    }
+
+    .card-face h2 {
+        font-size: 20px;
+    }
+
+    .navigation {
+        gap: 10px;
+    }
+
+    .navigation button {
+        min-width: 110px;
+        font-size: 13px;
+    }
+}
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+
+    background: rgba(124, 58, 237, 0.12);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 10%;
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        90deg,
+        #7c3aed,
+        #db2777,
+        #f97316
+    );
+
+    transition: width 0.4s ease;
+}
